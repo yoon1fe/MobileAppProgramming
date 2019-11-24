@@ -6,4 +6,64 @@
     android:layout_height="match_parent"
     tools:context="com.example.lectureroomReservation.ReserveActivity">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <Button
+            android:id = "@+id/btn_324"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="clickFragment"
+            android:text="324"
+            android:textStyle="bold"/>
+        <Button
+            android:id = "@+id/btn_342"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="clickFragment"
+            android:text="342"
+            android:textStyle="bold"/>
+        <Button
+            android:id = "@+id/btn_345"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="clickFragment"
+            android:text="345"
+            android:textStyle="bold"/>
+        <Button
+            android:id = "@+id/btn_348"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="clickFragment"
+            android:text="348"
+            android:textStyle="bold"/>
+        <Button
+            android:id = "@+id/btn_351"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="clickFragment"
+            android:text="351"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id = "@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>
