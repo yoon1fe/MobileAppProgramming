@@ -21,7 +21,7 @@ import com.example.registration.R;
     EditText idEditText;
     EditText pwEditText;
     Button btnJoin;
-
+    Button btnCheck;
     String sql;
     Cursor cursor;
 
@@ -34,9 +34,32 @@ import com.example.registration.R;
         pwEditText = (EditText) findViewById(R.id.pwText);
 
         btnJoin = (Button) findViewById(R.id.joinButton);
+        btnCheck = (Button) findViewById(R.id.validCheck);
 
         helper = new DatabaseOpenHelper(JoinActivity.this, DatabaseOpenHelper.tableName, null, version);
         database = helper.getWritableDatabase();
+
+        btnCheck.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+
+                String id = idEditText.getText().toString();
+                sql = "SELECT id FROM "+ helper.tableName + " WHERE id = '" + id + "'";
+                cursor = database.rawQuery(sql, null);
+
+
+                if(cursor.getCount() != 0) {
+                    //존재하는 아이디입니다.
+                    Toast toast = Toast.makeText(JoinActivity.this, "존재하는 아이디입니다.", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else{
+                    Toast toast = Toast.makeText(JoinActivity.this, "사용 가능한 아이디입니다.", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+
+            }
+        });
 
         btnJoin.setOnClickListener(new View.OnClickListener(){
             @Override
