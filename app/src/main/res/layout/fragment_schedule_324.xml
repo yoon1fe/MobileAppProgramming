@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lectureroomReservation.Schedule_342Fragment">
+    tools:context="com.example.lectureroomReservation.Schedule_342Fragment"
+    android:id="@+id/fragment_324">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -31,7 +32,6 @@
                     android:layout_weight="1"/>
 
                 <TextView
-                    android:text = "월"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -39,7 +39,6 @@
                     android:textColor="#ffffff"
                     android:textStyle="bold"/>
                 <TextView
-                    android:text = "화"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -47,7 +46,6 @@
                     android:textColor="#ffffff"
                     android:textStyle="bold"/>
                 <TextView
-                    android:text = "수"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -55,7 +53,6 @@
                     android:textColor="#ffffff"
                     android:textStyle="bold"/>
                 <TextView
-                    android:text = "목"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -63,7 +60,6 @@
                     android:textColor="#ffffff"
                     android:textStyle="bold"/>
                 <TextView
-                    android:text = "금"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
@@ -90,7 +86,6 @@
                     android:gravity="right"/>
 
                 <Button
-                    android:text = "월"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -100,7 +95,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/monday18"/>
                 <Button
-                    android:text = "화"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -110,7 +104,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/tuesday18"/>
                 <Button
-                    android:text = "수"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -120,7 +113,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/wednesday18"/>
                 <Button
-                    android:text = "목"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -130,7 +122,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/thursday18"/>
                 <Button
-                    android:text = "금"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -158,7 +149,6 @@
                     android:gravity="right"/>
 
                 <Button
-                    android:text = "월"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -168,7 +158,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/monday19"/>
                 <Button
-                    android:text = "화"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -178,7 +167,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/tuesday19"/>
                 <Button
-                    android:text = "수"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -188,7 +176,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/wednesday19"/>
                 <Button
-                    android:text = "목"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -198,7 +185,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/thursday19"/>
                 <Button
-                    android:text = "금"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -226,7 +212,6 @@
                     android:gravity="right"/>
 
                 <Button
-                    android:text = "월"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -236,7 +221,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/monday20"/>
                 <Button
-                    android:text = "화"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -246,7 +230,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/tuesday20"/>
                 <Button
-                    android:text = "수"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -256,7 +239,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/wednesday20"/>
                 <Button
-                    android:text = "목"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -266,7 +248,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/thursday20"/>
                 <Button
-                    android:text = "금"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -294,7 +275,6 @@
                     android:gravity="right"/>
 
                 <Button
-                    android:text = "월"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -304,7 +284,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/monday21"/>
                 <Button
-                    android:text = "화"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -314,7 +293,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/tuesday21"/>
                 <Button
-                    android:text = "수"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -324,7 +302,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/wednesday21"/>
                 <Button
-                    android:text = "목"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -334,7 +311,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/thursday21"/>
                 <Button
-                    android:text = "금"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -362,7 +338,6 @@
                     android:gravity="right"/>
 
                 <Button
-                    android:text = "월"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -372,7 +347,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/monday22"/>
                 <Button
-                    android:text = "화"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -382,7 +356,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/tuesday22"/>
                 <Button
-                    android:text = "수"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -392,7 +365,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/wednesday22"/>
                 <Button
-                    android:text = "목"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -402,7 +374,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/thursday22"/>
                 <Button
-                    android:text = "금"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -430,7 +401,6 @@
                     android:gravity="right"/>
 
                 <Button
-                    android:text = "월"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -440,7 +410,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/monday23"/>
                 <Button
-                    android:text = "화"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -450,7 +419,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/tuesday23"/>
                 <Button
-                    android:text = "수"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -460,7 +428,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/wednesday23"/>
                 <Button
-                    android:text = "목"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
@@ -470,7 +437,6 @@
                     android:background="@drawable/cell_shape"
                     android:id="@+id/thursday23"/>
                 <Button
-                    android:text = "금"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="3"

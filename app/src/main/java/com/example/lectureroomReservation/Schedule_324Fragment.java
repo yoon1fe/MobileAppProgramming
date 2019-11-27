@@ -2,9 +2,14 @@ package com.example.lectureroomReservation;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +25,15 @@ import com.example.registration.R;
  */
 public class Schedule_324Fragment extends Fragment {
 
+    FragmentManager fm;
+    FragmentTransaction ft;
+    int version = 1;
+    DatabaseOpenHelper helper;
+    SQLiteDatabase database;
+
+    String sql;
+    Cursor cursor;
+
     Button[][] btn;
     int day = 5;
     int time = 6;
@@ -28,6 +42,7 @@ public class Schedule_324Fragment extends Fragment {
     int chooseDay;
     int flag = 0;
     private Context context;
+    String userID;
     private View.OnClickListener btnListener = new View.OnClickListener()
     {
         @Override
@@ -44,6 +59,17 @@ public class Schedule_324Fragment extends Fragment {
                         int start = j + 18;
                         text_time = start + ":00시 ~ ";
                         flag = 1;
+                        helper.insertTimeTable(database, userID, chooseDay, j);
+                    }
+                    else if(schedule[chooseDay][j] == 1 && flag == 1)
+                    {
+                        helper.insertTimeTable(database, userID, chooseDay, j);
+                        if(j == 5)
+                        {
+                            int end = j + 18;
+                            text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";
+                            flag = 0;
+                        }
                     }
                     else if(schedule[chooseDay][j] == 0 && flag == 1)
                     {
@@ -55,6 +81,15 @@ public class Schedule_324Fragment extends Fragment {
 
                 Toast.makeText(context, text_day + text_time, Toast.LENGTH_SHORT).show();
                 System.out.println(text_day+text_time);
+
+                Intent intent = new Intent(context, MainActivity.class);
+                startActivity(intent);
+
+                fm = getActivity().getSupportFragmentManager();
+                ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.remove(fm.findFragmentById(R.id.fragment_324)).commit();
+                fm.popBackStack();
+                //finish();
             }
             else if(v.getId() == R.id.cancel)
             {
@@ -68,10 +103,17 @@ public class Schedule_324Fragment extends Fragment {
                     {
                         if(v.getId() == btn[i][j].getId())
                         {
-                            chooseDay = i;
-                            schedule[i][j] = 1;
-                            System.out.println(i + " " + j  +"button이 눌렸음");
-                            btn[i][j].setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                            if(schedule[i][j] == 1){
+                                //이미 예약됐음
+                                Toast toast = Toast.makeText(context, "이미 예약되었습니다.", Toast.LENGTH_SHORT);
+                                toast.show();
+                            }else{
+                                chooseDay = i;
+                                schedule[i][j] = 1;
+                                System.out.println(i + " " + j  +"button이 눌렸음");
+                                btn[i][j].setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+
+                            }
                         }
                     }
                 }
@@ -89,19 +131,14 @@ public class Schedule_324Fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_schedule_324, container, false);
+        context = container.getContext();
+
+        helper = new DatabaseOpenHelper(context, DatabaseOpenHelper.tableName, null, version);
+
+        database = helper.getWritableDatabase();
 
         btn = new Button[5][6];
         schedule = new int[5][6];
-
-        for(int i = 0; i<day; i++)
-        {
-            for(int j = 0; j<time; j++)
-            {
-                schedule[i][j] = 0;
-            }
-        }
-
-        context = container.getContext();
 
         btn[0][0] = view.findViewById(R.id.monday18);
         btn[0][1] = view.findViewById(R.id.monday19);
@@ -138,6 +175,50 @@ public class Schedule_324Fragment extends Fragment {
         btn[4][4] = view.findViewById(R.id.friday22);
         btn[4][5] = view.findViewById(R.id.friday23);
 
+        sql = "SELECT * FROM " + helper.tableName;
+        cursor = database.rawQuery(sql, null);
+
+        while(cursor.moveToNext())
+        {
+            String id = cursor.getString(0);
+            String pw = cursor.getString(1);
+            int conn = cursor.getInt(2);
+            System.out.println(id + " , " + pw + " , " + conn);
+            if(conn == 1)
+                userID = id;
+        }
+
+//        sql = "SELECT id FROM "+ helper.tableName + " WHERE conn = " + 1 ;
+//        cursor = database.rawQuery(sql, null);
+//
+//        System.out.println("SELECT id FROM "+ helper.tableName + " WHERE conn = " + 1);
+//
+//        if(cursor.getCount() != 0) // 접속 유저를 찾음
+//        {
+//            userID = cursor.getString(0);
+//        }
+
+        System.out.println("접속 유저는 : " + userID);
+
+        for(int i = 0; i<day; i++)
+        {
+            for(int j = 0; j<time; j++)
+            {
+                sql = "SELECT id FROM "+ helper.tableName2 + " WHERE day = " + i +  " and time = " + j ;
+                cursor = database.rawQuery(sql, null);
+
+                //System.out.println("select id from timetable where day = " + i + " and time = " + j);
+                //System.out.println("결과투플: " + cursor.getCount());
+
+                if(cursor.getCount() != 0)
+                {
+                    btn[i][j].setBackgroundColor(Color.GRAY);
+                    schedule[i][j] =1;
+                }
+                else
+                    schedule[i][j] = 0;
+            }
+        }
 
         System.out.println("In fragment 324");
         for(int i = 0; i<day; i++)

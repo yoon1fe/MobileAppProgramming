@@ -44,6 +44,7 @@ import com.example.registration.R;
 
                 String id = idEditText.getText().toString();
                 String pw = pwEditText.getText().toString();
+                int conn = 0;
 
                 if(id.length() == 0 || pw.length() == 0) {
                     //아이디와 비밀번호는 필수 입력사항입니다.
@@ -61,8 +62,9 @@ import com.example.registration.R;
                     Toast toast = Toast.makeText(JoinActivity.this, "존재하는 아이디입니다.", Toast.LENGTH_SHORT);
                     toast.show();
                 }else{
-                    helper.insertUser(database,id,pw);
+                    helper.insertUser(database,id,pw,conn);
                     Toast toast = Toast.makeText(JoinActivity.this, "가입이 완료되었습니다. 로그인을 해주세요.", Toast.LENGTH_SHORT);
+                    System.out.println("회원가입 완료 " + id + " , " + pw+ " , " + conn);
                     toast.show();
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(intent);

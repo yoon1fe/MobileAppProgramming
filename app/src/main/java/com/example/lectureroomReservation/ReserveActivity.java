@@ -52,9 +52,14 @@ public class ReserveActivity extends AppCompatActivity {
                 break;
         }
         fm = getSupportFragmentManager();
+        fm.popBackStack();
         ft = fm.beginTransaction();
         ft.replace(R.id.frameLayout, fr);
-        ft.addToBackStack(null);
         ft.commit();
+
+//        fm = getSupportFragmentManager();
+//        ft = fm.beginTransaction();
+//        ft.replace(R.id.frameLayout, fr);
+//        fm.popBackStack();
     }
 }
