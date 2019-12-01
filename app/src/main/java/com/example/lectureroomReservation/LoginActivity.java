@@ -1,3 +1,4 @@
+
 package com.example.lectureroomReservation;
 
 import android.content.Intent;
@@ -52,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 sql = "SELECT id FROM "+ helper.tableName + " WHERE id = '" + id + "'";
                 cursor = database.rawQuery(sql, null);
 
+                System.out.println("select id from users where id = " + id);
                 System.out.println(cursor.getCount());
                 if (cursor.getCount() != 1) {
                     //아이디가 틀렸습니다.
@@ -69,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                     toast.show();
                 } else {
                     //로그인성공
+                    helper.updateUser(database, id, pw, 1);
                     Toast toast = Toast.makeText(LoginActivity.this, "로그인성공", Toast.LENGTH_SHORT);
                     toast.show();
                     //인텐트 생성 및 호출
