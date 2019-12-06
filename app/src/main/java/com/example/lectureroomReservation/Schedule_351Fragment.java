@@ -57,31 +57,34 @@ public class Schedule_351Fragment extends Fragment {
 
             if(v.getId() == R.id.confirm)       //확인 눌렀을때
             {
+                int start = 0 , end  =0;
                 String text_day = dayStr[chooseDay] + " ";
                 String text_time  = "";
                 for(int j = 0; j<time; j++)
                 {
                     if(schedule[chooseDay][j] == 1 && flag == 0)
                     {
-                        int start = j + 18;
+                        start = j + 18;
                         text_time = start + ":00시 ~ ";
                         flag = 1;
-                        helper.insertTimeTable351(database, userID, chooseDay, j);
+                        helper.insertTimeTable351(database, chooseDay, j);
                     }
                     else if(schedule[chooseDay][j] == 1 && flag == 1)
                     {
-                        helper.insertTimeTable351(database, userID, chooseDay, j);
+                        helper.insertTimeTable351(database, chooseDay, j);
                         if(j == 5)
                         {
-                            int end = j + 18;
+                            end = j + 18;
                             text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";
+                            helper.insertRegistration(database, userID, 351, chooseDay, start, end);
                             flag = 0;
                         }
                     }
                     else if(schedule[chooseDay][j] == 0 && flag == 1)
                     {
-                        int end = j + 17;
+                        end = j + 17;
                         text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";
+                        helper.insertRegistration(database, userID, 351, chooseDay, start, end);
                         flag = 0;
                     }
                 }
@@ -216,7 +219,7 @@ public class Schedule_351Fragment extends Fragment {
         {
             for(int j = 0; j<time; j++)
             {
-                sql = "SELECT id FROM "+ helper.tableName351 + " WHERE day = " + i +  " and time = " + j ;
+                sql = "SELECT * FROM "+ helper.tableName351 + " WHERE day = " + i +  " and time = " + j ;
                 cursor = database.rawQuery(sql, null);
 
                 //System.out.println("select id from timetable where day = " + i + " and time = " + j);
@@ -227,7 +230,7 @@ public class Schedule_351Fragment extends Fragment {
                     btn[i][j].setBackgroundColor(Color.GRAY);
                     schedule[i][j] =1;
                     btn[i][j].setText("예약완료");
-}
+                }
                 else
                     schedule[i][j] = 0;
             }

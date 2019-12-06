@@ -28,6 +28,7 @@ public class Schedule_324Fragment extends Fragment {
     FragmentManager fm;
     FragmentTransaction ft;
     int version = 1;
+    int idx;
     DatabaseOpenHelper helper;
     SQLiteDatabase database;
 
@@ -41,14 +42,15 @@ public class Schedule_324Fragment extends Fragment {
     int chooseDay;
     int flag = 0;
     private Context context;
-    String userID;
-
+    //String userID;
+    String userID2 = LoginActivity.UserId;
 
     private View.OnClickListener btnListener = new View.OnClickListener()
     {
         @Override
         public void onClick(View v) {
 
+            int start=0, end =0;
             if(v.getId() == R.id.confirm)       //확인 눌렀을때
             {
                 System.out.println("!!!!!!!!!!!!!");
@@ -58,25 +60,27 @@ public class Schedule_324Fragment extends Fragment {
                 {
                     if(schedule[chooseDay][j] == 1 && flag == 0)
                     {
-                        int start = j + 18;
+                        start = j + 18;
                         text_time = start + ":00시 ~ ";
+                        helper.insertTimeTable324(database, chooseDay, j);
                         flag = 1;
-                        helper.insertTimeTable324(database, userID, chooseDay, j);
                     }
                     else if(schedule[chooseDay][j] == 1 && flag == 1)
                     {
-                        helper.insertTimeTable324(database, userID, chooseDay, j);
+                        helper.insertTimeTable324(database, chooseDay, j);
                         if(j == 5)
                         {
-                            int end = j + 18;
+                            end = j + 18;
                             text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";
+                            helper.insertRegistration(database, userID2, 324, chooseDay, start, end);
                             flag = 0;
                         }
                     }
                     else if(schedule[chooseDay][j] == 0 && flag == 1)
                     {
-                        int end = j + 17;
+                        end = j + 17;
                         text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";
+                        helper.insertRegistration(database, userID2, 324, chooseDay, start, end);
                         flag = 0;
                     }
                 }
@@ -174,33 +178,23 @@ public class Schedule_324Fragment extends Fragment {
         sql = "SELECT * FROM " + helper.tableName;
         cursor = database.rawQuery(sql, null);
 
-        while(cursor.moveToNext())
-        {
-            String id = cursor.getString(0);
-            String pw = cursor.getString(1);
-            int conn = cursor.getInt(2);
-            System.out.println(id + " , " + pw + " , " + conn);
-            if(conn == 1)
-                userID = id;
-        }
-
-//        sql = "SELECT id FROM "+ helper.tableName + " WHERE conn = " + 1 ;
-//        cursor = database.rawQuery(sql, null);
-//
-//        System.out.println("SELECT id FROM "+ helper.tableName + " WHERE conn = " + 1);
-//
-//        if(cursor.getCount() != 0) // 접속 유저를 찾음
+//        while(cursor.moveToNext())
 //        {
-//            userID = cursor.getString(0);
+//            String id = cursor.getString(0);
+//            String pw = cursor.getString(1);
+//            int conn = cursor.getInt(2);
+//            System.out.println(id + " , " + pw + " , " + conn);
+//            if(conn == 1)
+//                userID = id;
 //        }
 
-        System.out.println("접속 유저는 : " + userID);
+//        System.out.println("접속 유저는 : " + userID);
 
         for(int i = 0; i<day; i++)
         {
             for(int j = 0; j<time; j++)
             {
-                sql = "SELECT id FROM "+ helper.tableName324 + " WHERE day = " + i +  " and time = " + j ;
+                sql = "SELECT * FROM "+ helper.tableName324 + " WHERE day = " + i +  " and time = " + j ;
                 cursor = database.rawQuery(sql, null);
 
                 //System.out.println("select id from timetable where day = " + i + " and time = " + j);

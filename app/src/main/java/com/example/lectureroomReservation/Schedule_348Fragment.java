@@ -57,31 +57,34 @@ public class Schedule_348Fragment extends Fragment {
 
             if(v.getId() == R.id.confirm)       //확인 눌렀을때
             {
+                int start = 0, end = 0;
                 String text_day = dayStr[chooseDay] + " ";
                 String text_time  = "";
                 for(int j = 0; j<time; j++)
                 {
                     if(schedule[chooseDay][j] == 1 && flag == 0)
                     {
-                        int start = j + 18;
+                        start = j + 18;
                         text_time = start + ":00시 ~ ";
                         flag = 1;
-                        helper.insertTimeTable348(database, userID, chooseDay, j);
+                        helper.insertTimeTable348(database, chooseDay, j);
                     }
                     else if(schedule[chooseDay][j] == 1 && flag == 1)
                     {
-                        helper.insertTimeTable348(database, userID, chooseDay, j);
+                        helper.insertTimeTable348(database, chooseDay, j);
                         if(j == 5)
                         {
-                            int end = j + 18;
+                            end = j + 18;
                             text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";
+                            helper.insertRegistration(database, userID, 348, chooseDay, start, end);
                             flag = 0;
                         }
                     }
                     else if(schedule[chooseDay][j] == 0 && flag == 1)
                     {
-                        int end = j + 17;
+                        end = j + 17;
                         text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";
+                        helper.insertRegistration(database, userID, 348, chooseDay, start, end);
                         flag = 0;
                     }
                 }
@@ -182,8 +185,6 @@ public class Schedule_348Fragment extends Fragment {
         cursor = database.rawQuery(sql, null);
 
 
-
-
         while(cursor.moveToNext())
         {
             String id = cursor.getString(0);
@@ -194,23 +195,13 @@ public class Schedule_348Fragment extends Fragment {
                 userID = id;
         }
 
-//        sql = "SELECT id FROM "+ helper.tableName + " WHERE conn = " + 1 ;
-//        cursor = database.rawQuery(sql, null);
-//
-//        System.out.println("SELECT id FROM "+ helper.tableName + " WHERE conn = " + 1);
-//
-//        if(cursor.getCount() != 0) // 접속 유저를 찾음
-//        {
-//            userID = cursor.getString(0);
-//        }
-
         System.out.println("접속 유저는 : " + userID);
 
         for(int i = 0; i<day; i++)
         {
             for(int j = 0; j<time; j++)
             {
-                sql = "SELECT id FROM "+ helper.tableName348 + " WHERE day = " + i +  " and time = " + j ;
+                sql = "SELECT * FROM "+ helper.tableName348 + " WHERE day = " + i +  " and time = " + j ;
                 cursor = database.rawQuery(sql, null);
 
                 //System.out.println("select id from timetable where day = " + i + " and time = " + j);

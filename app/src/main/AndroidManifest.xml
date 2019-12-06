@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_cse_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name="com.example.lectureroomReservation.ReserveActivity"></activity>
+        <activity android:name="com.example.lectureroomReservation.ConfirmActivity"></activity>
+        <activity android:name="com.example.lectureroomReservation.ReserveActivity" />
         <activity android:name="com.example.lectureroomReservation.MainActivity" />
         <activity android:name="com.example.lectureroomReservation.LoginActivity">
             <intent-filter>

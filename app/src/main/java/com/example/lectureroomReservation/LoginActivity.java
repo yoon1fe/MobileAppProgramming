@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     String sql;
     Cursor cursor;
 
+    static String UserId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     //로그인성공
                     helper.updateUser(database, id, pw, 1);
+                    UserId = id;
                     Toast toast = Toast.makeText(LoginActivity.this, "로그인성공", Toast.LENGTH_SHORT);
                     toast.show();
                     //인텐트 생성 및 호출
