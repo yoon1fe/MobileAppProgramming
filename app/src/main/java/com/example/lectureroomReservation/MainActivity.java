@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button Reservebtn;
     Button Confirmbtn;
-    Button Cancelbtn;
+    Button Etcbtn;
     Button Noticebtn;
 
     @Override
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         Reservebtn = findViewById(R.id.reserveButton);
         Confirmbtn = findViewById(R.id.confirmButton);
-        Cancelbtn = findViewById(R.id.cancelButton);
+        Etcbtn = findViewById(R.id.cancelButton);
         Noticebtn = findViewById(R.id.noticeButton);
 
 
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Confirmbtn.setOnClickListener(new View.OnClickListener(){
+        Confirmbtn.setOnClickListener(new View.OnClickListener(){           //예약확인 버튼
             @Override
             public void onClick(View v)
             {
@@ -56,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Etcbtn.setOnClickListener(new View.OnClickListener(){           // 버튼
+            @Override
+            public void onClick(View v)
+            {
+                Intent notice_Intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://lms.knu.ac.kr"));
+                startActivity(notice_Intent);
+            }
+        });
         Noticebtn.setOnClickListener(new View.OnClickListener(){           //공지사항
             @Override
             public void onClick(View v) {

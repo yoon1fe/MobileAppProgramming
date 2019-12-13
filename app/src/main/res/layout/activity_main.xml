@@ -82,7 +82,7 @@
                 android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
                 android:background="#FFFFFF"
-                android:text="예약 취소"
+                android:text="LMS"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 

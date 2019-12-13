@@ -80,7 +80,7 @@ public class Schedule_345Fragment extends Fragment {
                             flag = 0;
                         }
                     }
-                    else if(schedule[chooseDay][j] == 0 && flag == 1)
+                    else if((schedule[chooseDay][j] == 0 || schedule[chooseDay][j] == 2) && flag == 1)
                     {
                         end = j + 17;
                         text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";

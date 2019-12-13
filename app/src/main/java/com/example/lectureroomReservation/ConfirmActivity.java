@@ -1,5 +1,6 @@
 package com.example.lectureroomReservation;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.registration.R;
 
@@ -25,6 +27,7 @@ public class ConfirmActivity extends AppCompatActivity {
     ListView listview;
     TextView textView;
     String UserId = LoginActivity.UserId;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,61 +56,52 @@ public class ConfirmActivity extends AppCompatActivity {
 
                 System.out.println("삭제버튼이 클릭됨");
                 System.out.println("count : " + count);
-                if(count > 0)
-                {
+
+                if (count > 0) {
                     checked = listview.getCheckedItemPosition();
 
                     System.out.println("checked : " + checked);
 
-                    if(checked > -1 && checked < count)
-                    {
+                    if (checked > -1 && checked < count) {
                         int temp = 0;
                         //sql = "SELECT * FROM (SELECT * FROM " + helper.tableRegistration +" WHERE id = '" + UserId + "')" + " WHERE ROWNUM = " + temp;
-                        sql = "SELECT * FROM " + helper.tableRegistration +" WHERE id = '" + UserId + "'";
+                        sql = "SELECT * FROM " + helper.tableRegistration + " WHERE id = '" + UserId + "'";
 
                         cursor = database.rawQuery(sql, null);
 
                         System.out.println("개수: " + cursor.getCount());
-                        while(cursor.moveToNext())
-                        {
-                            if(temp == checked)
-                            {
+                        while (cursor.moveToNext()) {
+                            if (temp == checked) {
                                 String id = cursor.getString(0);
                                 int room = cursor.getInt(1);
                                 int day = cursor.getInt(2);
                                 int s_time = cursor.getInt(3);
                                 int f_time = cursor.getInt(4);
 
-                                switch (room)
-                                {
+                                switch (room) {
                                     case 324:
-                                        for(int i = s_time; i<=f_time; i++)
-                                        {
-                                            helper.deleteRoom_324(database, day, i-18);
+                                        for (int i = s_time; i <= f_time; i++) {
+                                            helper.deleteRoom_324(database, day, i - 18);
                                         }
                                         break;
                                     case 342:
-                                        for(int i = s_time; i<=f_time; i++)
-                                        {
-                                            helper.deleteRoom_342(database, day, i-18);
+                                        for (int i = s_time; i <= f_time; i++) {
+                                            helper.deleteRoom_342(database, day, i - 18);
                                         }
                                         break;
                                     case 345:
-                                        for(int i = s_time; i<=f_time; i++)
-                                        {
-                                            helper.deleteRoom_345(database, day, i-18);
+                                        for (int i = s_time; i <= f_time; i++) {
+                                            helper.deleteRoom_345(database, day, i - 18);
                                         }
                                         break;
                                     case 348:
-                                        for(int i = s_time; i<=f_time; i++)
-                                        {
-                                            helper.deleteRoom_348(database, day, i-18);
+                                        for (int i = s_time; i <= f_time; i++) {
+                                            helper.deleteRoom_348(database, day, i - 18);
                                         }
                                         break;
                                     case 351:
-                                        for(int i = s_time; i<=f_time; i++)
-                                        {
-                                            helper.deleteRoom_351(database, day, i-18);
+                                        for (int i = s_time; i <= f_time; i++) {
+                                            helper.deleteRoom_351(database, day, i - 18);
                                         }
                                         break;
                                 }
@@ -119,15 +113,14 @@ public class ConfirmActivity extends AppCompatActivity {
                                 adapter.notifyDataSetChanged();
 
                                 break;
-                            }
-                            else
-                            {
+                            } else {
                                 temp++;
                             }
                         }
 
                     }
                 }
+
             }
 
         });

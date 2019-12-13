@@ -180,7 +180,7 @@ class DatabaseOpenHelper extends SQLiteOpenHelper {
         Log.i("tag", "예약명단에서 삭제");
         db.beginTransaction();
         try {
-            String sql = "DELETE FROM " + tableRegistration + " WHERE room = 324 and day = " + day + " and s_time = " + s_time + " and f_time = " + f_time;
+            String sql = "DELETE FROM " + tableRegistration + " WHERE room = " + room + " and day = " + day + " and s_time = " + s_time + " and f_time = " + f_time;
             db.execSQL(sql);
             db.setTransactionSuccessful();
         }catch (Exception e)
