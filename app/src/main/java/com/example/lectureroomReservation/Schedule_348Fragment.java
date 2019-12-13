@@ -45,11 +45,6 @@ public class Schedule_348Fragment extends Fragment {
     String userID;
 
 
-
-    private void setCourses(){
-
-    }
-
     private View.OnClickListener btnListener = new View.OnClickListener()
     {
         @Override
@@ -68,6 +63,7 @@ public class Schedule_348Fragment extends Fragment {
                         text_time = start + ":00시 ~ ";
                         flag = 1;
                         helper.insertTimeTable348(database, chooseDay, j);
+                        schedule[chooseDay][j] = 3;
                     }
                     else if(schedule[chooseDay][j] == 1 && flag == 1)
                     {
@@ -78,9 +74,10 @@ public class Schedule_348Fragment extends Fragment {
                             text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";
                             helper.insertRegistration(database, userID, 348, chooseDay, start, end);
                             flag = 0;
+                            schedule[chooseDay][j] = 3;
                         }
                     }
-                    else if(schedule[chooseDay][j] == 0 && flag == 1)
+                    else if(schedule[chooseDay][j] != 1 && flag == 1)
                     {
                         end = j + 17;
                         text_time =  text_time + end + ":00시까지 강의실을 대여했습니다";
@@ -108,7 +105,7 @@ public class Schedule_348Fragment extends Fragment {
                     {
                         if(v.getId() == btn[i][j].getId())
                         {
-                            if(schedule[i][j] == 1){
+                            if(schedule[i][j] == 3){
                                 //이미 예약됐음
                                 Toast toast = Toast.makeText(context, "이미 예약되었습니다.", Toast.LENGTH_SHORT);
                                 toast.show();
@@ -210,7 +207,7 @@ public class Schedule_348Fragment extends Fragment {
                 if(cursor.getCount() != 0)
                 {
                     btn[i][j].setBackgroundColor(Color.GRAY);
-                    schedule[i][j] =1;
+                    schedule[i][j] =3;
                     btn[i][j].setText("예약완료");
                 }
                 else
